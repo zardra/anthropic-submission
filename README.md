@@ -32,24 +32,24 @@ Parser Agent - extracts endpoint data
        ↓
 Orchestrator spawns parallel agents per endpoint:
        ↓
-┌──────────────┬───────────────┬─────────────────┐
-│              │               │                 │
+┌──────────────┬───────────────┬
+│              │               │
 Parameter    Example       How-To
 Documenter   Generator     Generator
 │              │               │
-└──────────────┴───────────────┴─────────────────┘
+└──────────────┴───────────────┴
        ↓
 endpoints/{name}-reference.md (params + examples)
 endpoints/{name}-howto.md
        ↓
 [PostToolUse Hook: Validate markdown tables]
        ↓
-┌──────────────┬───────────────┐
-│              │               │
+┌──────────────┬
+│              │
 Glossary      TOC
 Agent         Agent
 │              │
-└──────────────┴───────────────┘
+└──────────────┴
        ↓
 glossary.md + toc.md
        ↓

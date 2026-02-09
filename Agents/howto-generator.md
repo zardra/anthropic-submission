@@ -44,12 +44,12 @@ Description of what this step accomplishes.
 **Request:**
 
 ```bash
-curl -X GET 'https://petstore.swagger.io/v2/pets?limit=10' \
+curl -X GET '[URL with parameters if applicable]' \
   -H 'Accept: application/json'
 ```
 
 **What's happening:**
-- The `limit` parameter restricts results to 10 pets
+- The `limit` parameter restricts results to 10
 - The Accept header requests JSON response format
 
 **Response:**
@@ -58,8 +58,8 @@ curl -X GET 'https://petstore.swagger.io/v2/pets?limit=10' \
 [
   {
     "id": 1,
-    "name": "Fluffy",
-    "tag": "cat"
+    "name": "[Name]",
+    "tag": "[tag]"
   }
 ]
 ```
@@ -74,7 +74,7 @@ curl -X GET 'https://petstore.swagger.io/v2/pets?limit=10' \
 
 Multi-step workflow showing how this endpoint fits into a larger process.
 
-1. **First, retrieve existing pets**
+1. **First, retrieve existing items**
    ```bash
    # Command here
    ```
@@ -86,7 +86,7 @@ Multi-step workflow showing how this endpoint fits into a larger process.
 
 3. **Finally, process the results**
    - Handle pagination
-   - Process each pet
+   - Process each item
 
 ### Workflow 2: [Another Scenario]
 
@@ -103,10 +103,10 @@ Multi-step workflow showing how this endpoint fits into a larger process.
 **Solution:**
 ```bash
 # ❌ Wrong
-curl -X GET 'https://petstore.swagger.io/v2/pets?limit=-5'
+curl -X GET '[URL with limit=-5]'
 
 # ✅ Correct
-curl -X GET 'https://petstore.swagger.io/v2/pets?limit=5'
+curl -X GET '[URL with limit=5]'
 ```
 
 #### Error: Not Found

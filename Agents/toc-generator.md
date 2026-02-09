@@ -25,9 +25,9 @@ Scan all generated documentation files and create a comprehensive, navigable tab
 Create a markdown table of contents:
 
 ```markdown
-# Petstore API Documentation
+# [API Name] API Documentation
 
-Complete documentation for the Swagger Petstore API v1.0.0
+Complete documentation for the [API Name][API Version]
 
 ## Table of Contents
 
@@ -37,55 +37,50 @@ Complete documentation for the Swagger Petstore API v1.0.0
 
 ### Endpoints
 
-#### Pets Collection
+#### [Endpoint Name] Collection
 
-##### GET /pets
-- [API Reference](endpoints/get-pets-reference.md) - Retrieve all pets
-- [How-To Guide](endpoints/get-pets-howto.md) - Learn to query and filter pets
+##### GET [path]
+- [API Reference]([file path]) - [Description]
+- [How-To Guide]([file] path]) - [Description]
 
-##### POST /pets
-- [API Reference](endpoints/post-pets-reference.md) - Create a new pet
-- [How-To Guide](endpoints/post-pets-howto.md) - Learn to add pets to the store
+##### POST [path]
+- [API Reference]([file path]) - [Description]
+- [How-To Guide]([file path]) - [Description]
 
-#### Individual Pet Operations
+#### [Endpoint Name] Operations
 
-##### GET /pets/{id}
-- [API Reference](endpoints/get-pets-by-id-reference.md) - Retrieve a specific pet
-- [How-To Guide](endpoints/get-pets-by-id-howto.md) - Learn to fetch pet details
+##### GET [path]
+- [API Reference]([file path]) - [Description]
+- [How-To Guide]([file path]) - [Description]
 
-##### DELETE /pets/{id}
-- [API Reference](endpoints/delete-pets-by-id-reference.md) - Delete a pet
-- [How-To Guide](endpoints/delete-pets-by-id-howto.md) - Learn to remove pets
+##### DELETE [path]
+- [API Reference]([file path]) - [Description]
+- [How-To Guide]([file path]) - [Description]
 
-### Reference
-
-- [Glossary](glossary.md) - Definitions of API terms and schemas
-- [Error Codes](#error-codes) - Common error responses
 
 ---
 
 ## API Overview
 
-The Swagger Petstore API provides endpoints for managing pets in a pet store system.
+The [API Name] provides endpoints for [API Description].
 
-**Base URL**: `https://petstore.swagger.io/v2`
+**Base URL**: `[API base URL]`
 
-**Version**: 1.0.0
+**Version**: [Version number]
 
 ### Available Operations
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | /pets | Retrieve all pets with optional filtering |
-| POST | /pets | Create a new pet |
-| GET | /pets/{id} | Retrieve a specific pet by ID |
-| DELETE | /pets/{id} | Delete a pet by ID |
+| [METHOD] | [path] | [Description] |
+| [METHOD]  | [path]  | [Description] |
+| [METHOD]  | [path] | [Description] |
+| [METHOD]  | [path]  | [Description] |
 
 ### Quick Start
 
-1. Review the [Glossary](glossary.md) to understand key terms
-2. Start with [GET /pets How-To Guide](endpoints/get-pets-howto.md) to learn basic querying
-3. Explore the API Reference for detailed parameter information
+1. Review the [Glossary]([file path]) to understand key terms
+2. Start with [Top API Endpoint]([file path]) to learn basic querying
 
 ---
 
@@ -101,7 +96,7 @@ All endpoints return standard HTTP status codes and Error objects:
 | 404 | Not Found | Requested resource doesn't exist |
 | 500 | Server Error | Internal server error occurred |
 
-See the [Error schema](glossary.md#error) for details on error response format.
+See the [Error schema]([file path]) for details on error response format.
 ```
 
 ## Key Requirements

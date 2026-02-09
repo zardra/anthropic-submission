@@ -38,14 +38,14 @@ Description of what this endpoint does.
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| id | integer(int64) | Yes | ID of pet to fetch |
+| [Name] | [type (format)] | [Required Boolean] | [Description] |
 
 ### Query Parameters
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| tags | array[string] | No | tags to filter by |
-| limit | integer(int32) | No | maximum number of results to return |
+| [Name] | [type (format)] | [Required Boolean] | [Description] |
+| [Name] | [type (format)] | [Required Boolean] | [Description] |
 
 ### Request Body
 
@@ -53,8 +53,8 @@ Description of what this endpoint does.
 
 ```json
 {
-  "name": "string",
-  "tag": "string"
+  "name": "[name]",
+  "tag": "[type]"
 }
 ```
 
@@ -62,8 +62,8 @@ Description of what this endpoint does.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| name | string | Yes | Name of the pet |
-| tag | string | No | Tag for categorization |
+| [Name] | [type (format)] | [Required Boolean] | [Description] |
+| [Name] | [type (format)] | [Required Boolean] | [Description] |
 
 ## Responses
 
@@ -77,9 +77,9 @@ Returns the requested pet.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| id | integer(int64) | Yes | Unique identifier |
-| name | string | Yes | Name of the pet |
-| tag | string | No | Tag for categorization |
+| [Name] | [type (format)] | [Required Boolean] | [Description] |
+| [Name] | [type (format)] | [Required Boolean] | [Description] |
+| [Name] | [type (format)] | [Required Boolean] | [Description] |
 
 ### Default (Error)
 
@@ -91,8 +91,8 @@ Unexpected error occurred.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| code | integer(int32) | Yes | Error code |
-| message | string | Yes | Error message |
+| code | [type (format)]| [Required Boolean] | [Error code] |
+| message | [type (format)] | [Required Boolean] | [Error message] |
 ```
 
 ## Key Requirements

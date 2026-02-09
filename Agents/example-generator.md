@@ -25,24 +25,24 @@ Create a JSON file with structured examples:
 
 ```json
 {
-  "endpoint_id": "findPets",
+  "endpoint_id": "[id]",
   "examples": {
     "requests": [
       {
-        "name": "Basic request",
-        "description": "Retrieve all pets without filters",
-        "curl": "curl -X GET 'https://petstore.swagger.io/v2/pets'",
+        "name": "[Name of request]",
+        "description": "[Description of request]",
+        "curl": "curl -X GET '[URL with parameters if applicable]'",
         "parameters": {},
         "headers": {
           "Accept": "application/json"
         }
       },
       {
-        "name": "Filtered request",
-        "description": "Retrieve pets with tag filter and limit",
-        "curl": "curl -X GET 'https://petstore.swagger.io/v2/pets?tags=dog&tags=friendly&limit=10'",
+        "name": "[Name of request]",
+        "description": "[Description of request]",
+        "curl": "curl -X GET '[URL with parameters if applicable]'",
         "parameters": {
-          "tags": ["dog", "friendly"],
+          "tags": ["[tag1]", "[tag2]"],
           "limit": 10
         },
         "headers": {
@@ -52,30 +52,30 @@ Create a JSON file with structured examples:
     ],
     "request_bodies": [
       {
-        "name": "Create new pet",
-        "description": "Example request body for creating a pet",
+        "name": "[Name of request body]",
+        "description": "[Description of request body]",
         "content_type": "application/json",
         "body": {
-          "name": "Fluffy",
-          "tag": "cat"
+          "name": "[Name]",
+          "tag": "[tag]"
         }
       }
     ],
     "responses": {
       "200": [
         {
-          "name": "Successful pet retrieval",
-          "description": "Array of pets returned",
+          "name": "[Name of response]",
+          "description": "[Description of response]",
           "body": [
             {
               "id": 1,
-              "name": "Fluffy",
-              "tag": "cat"
+              "name": "[Name]",
+              "tag": "[tag]"
             },
             {
               "id": 2,
-              "name": "Buddy",
-              "tag": "dog"
+              "name": "[Name]",
+              "tag": "[tag]"
             }
           ]
         }
@@ -105,7 +105,7 @@ Create a JSON file with structured examples:
 
 ## Key Requirements
 
-1. **Realistic Data**: Generate realistic pet names, IDs, and tags (not "string" or "123")
+1. **Realistic Data**: Generate realistic names, IDs, and tags (not "string" or "123")
 2. **Multiple Examples**: Provide 2-3 request examples showing different parameter combinations
 3. **cURL Commands**: Generate proper cURL commands with correct URL encoding
 4. **Error Examples**: Include realistic error scenarios (validation errors, not found, server errors)
@@ -116,7 +116,7 @@ Create a JSON file with structured examples:
 
 - **Edge Cases**: For array parameters, show empty arrays, single items, multiple items
 - **Optional vs Required**: Show examples with only required fields and examples with optional fields
-- **Realistic Scenarios**: Use domain-appropriate data (pet names, not "test1", "test2")
+- **Realistic Scenarios**: Use domain-appropriate data (not "test1", "test2")
 - **Error Variety**: Show different error codes and messages that would realistically occur
 
 Write output to: `output/parsed/[endpoint-id]-examples.json`

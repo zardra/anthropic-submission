@@ -23,7 +23,7 @@ Create a markdown glossary file:
 ```markdown
 # API Glossary
 
-This glossary provides definitions for key terms and concepts used throughout the Petstore API documentation.
+This glossary provides definitions for key terms and concepts used throughout the [API Name] API documentation.
 
 ## A
 
@@ -46,18 +46,18 @@ An object returned when an API request fails. Contains a `code` (integer) and `m
 | code | integer(int32) | Numeric error code |
 | message | string | Human-readable error description |
 
-## N
+## [LETTER]
 
-### NewPet
+### [Parameter Name]
 A schema representing the data required to create a new pet in the system.
 
-**Used In**: POST /pets
+**Used In**: [METHOD] [path]
 
 **Schema**:
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| name | string | Yes | Pet's name |
-| tag | string | No | Category tag |
+| [field name] | [type] | [Required boolean] | [Description] |
+| [field name] | [type] | [Required boolean] | [Description] |
 
 ## P
 
@@ -65,21 +65,21 @@ A schema representing the data required to create a new pet in the system.
 An input value provided to an API endpoint. Parameters can be in the path, query string, headers, or request body.
 
 **Types**:
-- **Path Parameters**: Part of the URL path (e.g., `/pets/{id}`)
+- **Path Parameters**: Part of the URL path (e.g., `[example path]`)
 - **Query Parameters**: Appended to URL with `?` (e.g., `?limit=10`)
 - **Request Body**: Sent in the HTTP request body as JSON
 
-### Pet
-The primary resource in the Petstore API, representing an animal available for adoption.
+### [Primary Resource Name]
+The primary resource in the [API Name] API, representing [description].
 
-**Used In**: GET /pets, POST /pets, GET /pets/{id}
+**Used In**: GET [path], POST [path], GET [path]
 
 **Schema**:
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| id | integer(int64) | Yes | Unique identifier |
-| name | string | Yes | Pet's name |
-| tag | string | No | Category tag |
+| [field name] | [type] | [Required boolean] | [Description] |
+| [field name] | [type] | [Required boolean] | [Description] |
+| [field name] | [type] | [Required boolean] | [Description] |
 
 ## R
 
@@ -95,7 +95,7 @@ An HTTP status code indicating the result of an API request:
 ## Key Requirements
 
 1. **Extract All Terms**: Include:
-   - Schema names (Pet, NewPet, Error)
+   - Schema names
    - Technical concepts (Endpoint, Parameter, Response Code)
    - Data types (array, object, string, integer)
    - API-specific terminology
