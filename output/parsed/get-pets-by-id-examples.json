@@ -1,0 +1,221 @@
+{
+  "endpoint_id": "get-pets-by-id",
+  "method": "GET",
+  "path": "/pets/{id}",
+  "base_url": "https://petstore.swagger.io/v2",
+  "examples": [
+    {
+      "title": "Fetch a dog by ID",
+      "description": "Retrieve details for a specific pet using its numeric ID.",
+      "request": {
+        "curl": "curl -X GET \"https://petstore.swagger.io/v2/pets/1\" -H \"Accept: application/json\"",
+        "url": "https://petstore.swagger.io/v2/pets/1",
+        "method": "GET",
+        "path_parameters": {
+          "id": 1
+        },
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status_code": 200,
+        "description": "pet response",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "id": 1,
+          "name": "Max",
+          "tag": "dog"
+        }
+      }
+    },
+    {
+      "title": "Fetch a cat by ID",
+      "description": "Retrieve details for a cat pet entry.",
+      "request": {
+        "curl": "curl -X GET \"https://petstore.swagger.io/v2/pets/42\" -H \"Accept: application/json\"",
+        "url": "https://petstore.swagger.io/v2/pets/42",
+        "method": "GET",
+        "path_parameters": {
+          "id": 42
+        },
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status_code": 200,
+        "description": "pet response",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "id": 42,
+          "name": "Whiskers",
+          "tag": "cat"
+        }
+      }
+    },
+    {
+      "title": "Fetch a pet with no tag",
+      "description": "Retrieve a pet that does not have an assigned tag. The tag field is optional and may be absent.",
+      "request": {
+        "curl": "curl -X GET \"https://petstore.swagger.io/v2/pets/107\" -H \"Accept: application/json\"",
+        "url": "https://petstore.swagger.io/v2/pets/107",
+        "method": "GET",
+        "path_parameters": {
+          "id": 107
+        },
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status_code": 200,
+        "description": "pet response",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "id": 107,
+          "name": "Buddy"
+        }
+      }
+    },
+    {
+      "title": "Fetch a pet with a high ID",
+      "description": "Retrieve a pet using a large 64-bit integer ID value.",
+      "request": {
+        "curl": "curl -X GET \"https://petstore.swagger.io/v2/pets/9800345\" -H \"Accept: application/json\"",
+        "url": "https://petstore.swagger.io/v2/pets/9800345",
+        "method": "GET",
+        "path_parameters": {
+          "id": 9800345
+        },
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status_code": 200,
+        "description": "pet response",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "id": 9800345,
+          "name": "Goldie",
+          "tag": "fish"
+        }
+      }
+    }
+  ],
+  "error_examples": [
+    {
+      "title": "Pet not found (404)",
+      "description": "Attempting to fetch a pet with an ID that does not exist in the system.",
+      "request": {
+        "curl": "curl -X GET \"https://petstore.swagger.io/v2/pets/99999\" -H \"Accept: application/json\"",
+        "url": "https://petstore.swagger.io/v2/pets/99999",
+        "method": "GET",
+        "path_parameters": {
+          "id": 99999
+        },
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status_code": 404,
+        "description": "unexpected error",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "code": 404,
+          "message": "Pet not found with id: 99999"
+        }
+      }
+    },
+    {
+      "title": "Invalid ID format (400)",
+      "description": "Providing a non-numeric value for the pet ID, which must be a 64-bit integer.",
+      "request": {
+        "curl": "curl -X GET \"https://petstore.swagger.io/v2/pets/abc\" -H \"Accept: application/json\"",
+        "url": "https://petstore.swagger.io/v2/pets/abc",
+        "method": "GET",
+        "path_parameters": {
+          "id": "abc"
+        },
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status_code": 400,
+        "description": "unexpected error",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "code": 400,
+          "message": "Invalid pet ID: 'abc'. The id parameter must be a valid integer."
+        }
+      }
+    },
+    {
+      "title": "Negative ID (400)",
+      "description": "Providing a negative value for the pet ID, which is not a valid identifier.",
+      "request": {
+        "curl": "curl -X GET \"https://petstore.swagger.io/v2/pets/-5\" -H \"Accept: application/json\"",
+        "url": "https://petstore.swagger.io/v2/pets/-5",
+        "method": "GET",
+        "path_parameters": {
+          "id": -5
+        },
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status_code": 400,
+        "description": "unexpected error",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "code": 400,
+          "message": "Invalid pet ID: '-5'. The id parameter must be a positive integer."
+        }
+      }
+    },
+    {
+      "title": "Internal server error (500)",
+      "description": "The server encounters an unexpected condition that prevents it from fulfilling the request.",
+      "request": {
+        "curl": "curl -X GET \"https://petstore.swagger.io/v2/pets/10\" -H \"Accept: application/json\"",
+        "url": "https://petstore.swagger.io/v2/pets/10",
+        "method": "GET",
+        "path_parameters": {
+          "id": 10
+        },
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status_code": 500,
+        "description": "unexpected error",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "code": 500,
+          "message": "An unexpected internal server error occurred. Please try again later."
+        }
+      }
+    }
+  ]
+}

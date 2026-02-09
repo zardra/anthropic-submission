@@ -1,0 +1,43 @@
+{
+  "endpoint_id": "delete-pets-by-id",
+  "method": "DELETE",
+  "path": "/pets/{id}",
+  "summary": "deletePet",
+  "description": "deletes a single pet based on the ID supplied",
+  "parameters": [
+    {
+      "name": "id",
+      "in": "path",
+      "description": "ID of pet to delete",
+      "required": true,
+      "schema": {
+        "type": "integer",
+        "format": "int64"
+      }
+    }
+  ],
+  "request_body": null,
+  "responses": {
+    "204": {
+      "description": "pet deleted",
+      "schema": null
+    },
+    "default": {
+      "description": "unexpected error",
+      "schema": {
+        "type": "object",
+        "required": ["code", "message"],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "schemas_referenced": ["Error"]
+}

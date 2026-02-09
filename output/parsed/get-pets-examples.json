@@ -1,0 +1,213 @@
+{
+  "endpoint_id": "get-pets",
+  "examples": {
+    "requests": [
+      {
+        "description": "Get all pets (no parameters)",
+        "curl": "curl -X GET \"https://petstore.swagger.io/v2/pets\" -H \"Accept: application/json\"",
+        "method": "GET",
+        "url": "https://petstore.swagger.io/v2/pets",
+        "headers": {
+          "Accept": "application/json"
+        },
+        "query_params": {}
+      },
+      {
+        "description": "Filter pets by a single tag",
+        "curl": "curl -X GET \"https://petstore.swagger.io/v2/pets?tags=dog\" -H \"Accept: application/json\"",
+        "method": "GET",
+        "url": "https://petstore.swagger.io/v2/pets?tags=dog",
+        "headers": {
+          "Accept": "application/json"
+        },
+        "query_params": {
+          "tags": ["dog"]
+        }
+      },
+      {
+        "description": "Filter pets by multiple tags",
+        "curl": "curl -X GET \"https://petstore.swagger.io/v2/pets?tags=dog&tags=friendly\" -H \"Accept: application/json\"",
+        "method": "GET",
+        "url": "https://petstore.swagger.io/v2/pets?tags=dog&tags=friendly",
+        "headers": {
+          "Accept": "application/json"
+        },
+        "query_params": {
+          "tags": ["dog", "friendly"]
+        }
+      },
+      {
+        "description": "Limit the number of results returned",
+        "curl": "curl -X GET \"https://petstore.swagger.io/v2/pets?limit=5\" -H \"Accept: application/json\"",
+        "method": "GET",
+        "url": "https://petstore.swagger.io/v2/pets?limit=5",
+        "headers": {
+          "Accept": "application/json"
+        },
+        "query_params": {
+          "limit": 5
+        }
+      },
+      {
+        "description": "Filter by tag and limit results",
+        "curl": "curl -X GET \"https://petstore.swagger.io/v2/pets?tags=cat&limit=3\" -H \"Accept: application/json\"",
+        "method": "GET",
+        "url": "https://petstore.swagger.io/v2/pets?tags=cat&limit=3",
+        "headers": {
+          "Accept": "application/json"
+        },
+        "query_params": {
+          "tags": ["cat"],
+          "limit": 3
+        }
+      },
+      {
+        "description": "Filter by multiple tags and limit results",
+        "curl": "curl -X GET \"https://petstore.swagger.io/v2/pets?tags=dog&tags=trained&limit=10\" -H \"Accept: application/json\"",
+        "method": "GET",
+        "url": "https://petstore.swagger.io/v2/pets?tags=dog&tags=trained&limit=10",
+        "headers": {
+          "Accept": "application/json"
+        },
+        "query_params": {
+          "tags": ["dog", "trained"],
+          "limit": 10
+        }
+      }
+    ],
+    "request_bodies": [],
+    "responses": {
+      "200": [
+        {
+          "description": "Successful response returning multiple pets",
+          "status_code": 200,
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "body": [
+            {
+              "id": 1,
+              "name": "Buddy",
+              "tag": "dog"
+            },
+            {
+              "id": 2,
+              "name": "Whiskers",
+              "tag": "cat"
+            },
+            {
+              "id": 3,
+              "name": "Goldie",
+              "tag": "fish"
+            }
+          ]
+        },
+        {
+          "description": "Successful response with a single pet matching tag filter",
+          "status_code": 200,
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "body": [
+            {
+              "id": 7,
+              "name": "Rex",
+              "tag": "dog"
+            }
+          ]
+        },
+        {
+          "description": "Successful response returning an empty list (no matching pets)",
+          "status_code": 200,
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "body": []
+        },
+        {
+          "description": "Successful response with pets that have no tag",
+          "status_code": 200,
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "body": [
+            {
+              "id": 10,
+              "name": "Milo"
+            },
+            {
+              "id": 11,
+              "name": "Luna",
+              "tag": "cat"
+            }
+          ]
+        },
+        {
+          "description": "Successful response with limit applied",
+          "status_code": 200,
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "body": [
+            {
+              "id": 1,
+              "name": "Buddy",
+              "tag": "dog"
+            },
+            {
+              "id": 2,
+              "name": "Whiskers",
+              "tag": "cat"
+            }
+          ]
+        }
+      ],
+      "default": [
+        {
+          "description": "Internal server error",
+          "status_code": 500,
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "body": {
+            "code": 500,
+            "message": "An unexpected internal server error occurred. Please try again later."
+          }
+        },
+        {
+          "description": "Invalid limit parameter (negative value)",
+          "status_code": 400,
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "body": {
+            "code": 400,
+            "message": "Invalid value for parameter 'limit': must be a non-negative integer."
+          }
+        },
+        {
+          "description": "Service temporarily unavailable",
+          "status_code": 503,
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "body": {
+            "code": 503,
+            "message": "The pet store service is temporarily unavailable. Please retry after a few minutes."
+          }
+        },
+        {
+          "description": "Unauthorized request (missing or invalid credentials)",
+          "status_code": 401,
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "body": {
+            "code": 401,
+            "message": "Authentication is required to access this resource. Please provide valid credentials."
+          }
+        }
+      ]
+    }
+  }
+}

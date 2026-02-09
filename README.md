@@ -11,6 +11,7 @@ This system uses Claude Code agents and hooks to automatically generate high-qua
 - Comprehensive glossary
 - Organized table of contents
 
+
 ## Architecture
 
 ### Multi-Agent System
@@ -36,32 +37,32 @@ Complete Documentation
 
 ### Agents
 
-1. **OpenAPI Parser** (`.claude/agents/openapi-parser.md`)
+1. **OpenAPI Parser** (`Agents/openapi-parser.md`)
    - Extracts and validates endpoint data from OpenAPI specs
    - Resolves schema references (including `$ref` and `allOf`)
    - Outputs structured JSON for downstream agents
 
-2. **Parameter Documenter** (`.claude/agents/parameter-documenter.md`)
+2. **Parameter Documenter** (`Agents/parameter-documenter.md`)
    - Creates API reference markdown with formatted parameter tables
    - Handles complex nested objects
    - Documents request/response schemas
 
-3. **Example Generator** (`.claude/agents/example-generator.md`)
+3. **Example Generator** (`Agents/example-generator.md`)
    - Generates realistic request/response examples
    - Creates cURL commands
    - Provides error scenario examples
 
-4. **How-To Guide Generator** (`.claude/agents/howto-generator.md`)
+4. **How-To Guide Generator** (`Agents/howto-generator.md`)
    - Creates tutorial-style documentation
    - Demonstrates multi-step workflows
    - Includes error handling and best practices
 
-5. **Glossary Builder** (`.claude/agents/glossary-builder.md`)
+5. **Glossary Builder** (`Agents/glossary-builder.md`)
    - Extracts technical terms from all documentation
    - Deduplicates and organizes alphabetically
    - Cross-references related endpoints
 
-6. **TOC Generator** (`.claude/agents/toc-generator.md`)
+6. **TOC Generator** (`Agents/toc-generator.md`)
    - Creates nested table of contents
    - Validates all links
    - Organizes by resource hierarchy
@@ -120,13 +121,13 @@ You can also run agents individually using Claude Code's Task tool:
 
 ```bash
 # Parse the OpenAPI spec
-claude task --agent .claude/agents/openapi-parser.md
+claude task --agent Agents/openapi-parser.md
 
 # Generate parameter documentation for a specific endpoint
-claude task --agent .claude/agents/parameter-documenter.md --input "<method-path>"
+claude task --agent Agents/parameter-documenter.md --input "<method-path>"
 
 # Build the glossary
-claude task --agent .claude/agents/glossary-builder.md
+claude task --agent Agents/glossary-builder.md
 ```
 -->
 ## Advanced Features
@@ -168,65 +169,9 @@ The Parameter Documenter demonstrates sophisticated nested object handling:
 - Presents nested properties clearly in tables
 - Uses dot notation for deeply nested fields
 
-## Project Structure
-
-```
-openapi-doc-generator/
-├── .claude/
-│   ├── agents/
-│   │   ├── openapi-parser.md
-│   │   ├── parameter-documenter.md
-│   │   ├── example-generator.md
-│   │   ├── howto-generator.md
-│   │   ├── glossary-builder.md
-│   │   └── toc-generator.md
-│   ├── hooks/
-│   │   ├── validate-openapi.sh
-│   │   ├── validate-markdown.sh
-│   │   └── lint-format.sh
-│   └── hooks.yaml
-├── scripts/
-│   └── orchestrator.py
-├── output/
-│   ├── parsed/          # Intermediate JSON data
-│   ├── endpoints/       # Generated endpoint docs
-│   ├── glossary.md
-│   └── toc.md
-└── README.md
-```
 
 ## Configuration
-<!--
-### Hooks Configuration
 
-Edit `.claude/hooks.yaml` to customize hook behavior:
-
-```yaml
-hooks:
-  - event: PreToolUse
-    type: command
-    command: .claude/hooks/validate-openapi.sh
-    description: Validate OpenAPI specification before processing
-```
-
-### Agent Customization
-
-Each agent's behavior can be customized by editing its `.md` file:
-- Modify system prompts
-- Add/remove tool permissions
-- Change output formats
-- Adjust validation rules
-
-## Testing
-
-### Test with Sample Spec
-
-The included `petstore-expanded.yaml` is a complete OpenAPI 3.0 spec perfect for testing:
-
-```bash
-python scripts/orchestrator.py ../petstore-expanded.yaml
-```
--->
 ### Verify Outputs
 
 Check that all expected files were generated:
@@ -245,40 +190,9 @@ test -f output/toc.md
 Run the validation hook manually:
 
 ```bash
-.claude/hooks/validate-markdown.sh < output/endpoints/<Reference_file_name>.md
-```
-<!--
-## Common Issues and Solutions
-
-### Issue: "OpenAPI spec file not found"
-
-**Solution**: Ensure the spec path is correct and the file exists:
-```bash
-ls -la your-spec.yaml
+Scripts/validate-markdown.sh < output/endpoints/<Reference_file_name>.md
 ```
 
-### Issue: "Invalid YAML format"
-
-**Solution**: Validate your YAML syntax:
-```bash
-python3 -c "import yaml; yaml.safe_load(open('your-spec.yaml'))"
-```
-
-### Issue: Agents not generating output
-
-**Solution**: Check that agents have write permissions:
-```bash
-ls -la .claude/agents/
-# All .md files should be readable
-```
-
-### Issue: Hooks not executing
-
-**Solution**: Ensure hooks are executable:
-```bash
-chmod +x .claude/hooks/*.sh
-```
--->
 ## Performance Considerations
 
 ### Parallel Processing
@@ -293,100 +207,9 @@ Each agent operates independently with its own context window:
 - Parser: Loads full OpenAPI spec (~10-50KB)
 - Per-endpoint agents: Load single endpoint data (~1-5KB)
 - Glossary/TOC: Load all generated docs (~50-200KB)
-<!--
-### Optimization Tips
 
-1. **Batch similar endpoints**: Group related endpoints in spec
-2. **Limit endpoint count**: For large APIs, process in chunks
-3. **Cache intermediate results**: Parsed JSON can be reused
-4. **Adjust parallelism**: Reduce workers if hitting rate limits
--->
-## Extension Ideas
 
-### Add More Agent Types
-
-- **Code Sample Generator**: Generate SDK code examples in multiple languages
-- **Postman Collection Generator**: Create Postman collections from spec
-- **API Client Generator**: Generate client libraries
-- **Test Suite Generator**: Create automated API tests
-
-### Enhance Existing Agents
-
-- **Parameter Documenter**: Add JSON Schema diagrams
-- **Example Generator**: Include language-specific code samples
-- **How-To Guide**: Add video tutorial scripts
-- **Glossary**: Add links to external resources
-
-### Additional Hooks
-
-- **Pre-commit hook**: Validate spec before committing
-- **Post-generation hook**: Deploy to documentation site
-- **Notification hook**: Send Slack message on completion
-
-## Best Practices
-
-### Agent Design
-
-1. **Single Responsibility**: Each agent has one clear purpose
-2. **Minimal Tools**: Grant only necessary tool permissions
-3. **Clear Contracts**: Define input/output formats explicitly
-4. **Error Reporting**: Provide actionable error messages
-
-### Orchestration
-
-1. **Fail Fast**: Validate inputs before heavy processing
-2. **Parallel Where Possible**: Run independent tasks concurrently
-3. **Aggregate Errors**: Collect all errors, don't stop at first failure
-4. **Progress Reporting**: Print clear status updates
-
-### Hook Implementation
-
-1. **Non-Blocking**: Hooks should be fast (<1s)
-2. **Clear Output**: Use stderr for logging, stdout for results
-3. **Graceful Degradation**: Warn but don't fail on minor issues
-4. **Idempotent**: Safe to run multiple times
-
-## Architecture Decisions
-
-### Why Separate Agents for Reference and How-To?
-
-**Decision**: Use separate Parameter Documenter and How-To Guide Generator agents
-
-**Rationale**:
-- Different audiences (reference users vs learners)
-- Different writing styles (technical vs tutorial)
-- Easier to parallelize
-- Allows specialized prompting for each type
-
-### Why JSON Intermediate Format?
-
-**Decision**: Parser outputs JSON files instead of passing data directly
-
-**Rationale**:
-- Debugging visibility
-- Allows re-running downstream agents without re-parsing
-- Enables manual intervention if needed
-- Better error isolation
-
-### Why Parallel Execution?
-
-**Decision**: Run per-endpoint agents in parallel using ThreadPoolExecutor
-
-**Rationale**:
-- Significant speed improvement (3-4x for 4 endpoints)
-- Endpoints are independent (no shared state)
-- Claude Code supports concurrent subagents
-- Limits can be adjusted based on rate limits
 
 ## License
 
 This is example code for educational purposes demonstrating Claude Code capabilities.
-<!--
-## Support
-
-For issues or questions:
-1. Check this README's troubleshooting section
-2. Review agent system prompts in `.claude/agents/`
-3. Examine hook implementations in `.claude/hooks/`
-4. Check orchestrator logs for specific error messages
--->

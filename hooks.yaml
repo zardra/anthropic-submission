@@ -7,16 +7,16 @@ hooks:
   # PreToolUse hooks run before tool execution
   - event: PreToolUse
     type: command
-    command: .claude/hooks/validate-openapi.sh
+    command: Scripts/validate-openapi.sh
     description: Validate OpenAPI specification before processing
     
   # PostToolUse hooks run after tool execution
   - event: PostToolUse
     type: command
-    command: .claude/hooks/validate-markdown.sh
+    command: Scripts/validate-markdown.sh
     description: Validate markdown table syntax in generated docs
     
   - event: PostToolUse
     type: command
-    command: .claude/hooks/lint-format.sh
+    command: Scripts/lint-format.sh
     description: Lint and format generated documentation files

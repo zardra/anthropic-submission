@@ -1,0 +1,63 @@
+{
+  "endpoint_id": "post-pets",
+  "method": "POST",
+  "path": "/pets",
+  "summary": "addPet",
+  "description": "Creates a new pet in the store. Duplicates are allowed",
+  "parameters": [],
+  "request_body": {
+    "description": "Pet to add to the store",
+    "required": true,
+    "content_type": "application/json",
+    "schema": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "tag": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "pet response",
+      "schema": {
+        "type": "object",
+        "required": ["name", "id"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "tag": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      }
+    },
+    "default": {
+      "description": "unexpected error",
+      "schema": {
+        "type": "object",
+        "required": ["code", "message"],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "schemas_referenced": ["NewPet", "Pet", "Error"]
+}

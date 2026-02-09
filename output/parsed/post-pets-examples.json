@@ -1,0 +1,87 @@
+{
+  "endpoint_id": "post-pets",
+  "base_url": "https://petstore.swagger.io/v2",
+  "examples": {
+    "requests": [
+      {
+        "title": "Minimal request (name only)",
+        "description": "Creates a new pet with just the required name field.",
+        "curl": "curl -X POST https://petstore.swagger.io/v2/pets \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"name\": \"Biscuit\"}'",
+        "request_body": {
+          "name": "Biscuit"
+        }
+      },
+      {
+        "title": "Full request (name and tag)",
+        "description": "Creates a new pet with a name and an optional tag for categorization.",
+        "curl": "curl -X POST https://petstore.swagger.io/v2/pets \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"name\": \"Maple\", \"tag\": \"golden-retriever\"}'",
+        "request_body": {
+          "name": "Maple",
+          "tag": "golden-retriever"
+        }
+      }
+    ],
+    "responses": {
+      "success": [
+        {
+          "title": "Pet created successfully (minimal)",
+          "status_code": 200,
+          "description": "The store assigns a unique integer ID to the newly created pet and returns the full pet object.",
+          "response_body": {
+            "id": 1024,
+            "name": "Biscuit"
+          }
+        },
+        {
+          "title": "Pet created successfully (with tag)",
+          "status_code": 200,
+          "description": "When a tag is provided, it is persisted alongside the name and returned in the response.",
+          "response_body": {
+            "id": 1025,
+            "name": "Maple",
+            "tag": "golden-retriever"
+          }
+        }
+      ],
+      "errors": [
+        {
+          "title": "Missing required field (name)",
+          "status_code": 422,
+          "description": "The name field is required. Omitting it produces a validation error.",
+          "curl": "curl -X POST https://petstore.swagger.io/v2/pets \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"tag\": \"tabby\"}'",
+          "request_body": {
+            "tag": "tabby"
+          },
+          "response_body": {
+            "code": 422,
+            "message": "Validation failed: 'name' is a required property"
+          }
+        },
+        {
+          "title": "Invalid JSON in request body",
+          "status_code": 400,
+          "description": "Sending malformed JSON results in a parse error.",
+          "curl": "curl -X POST https://petstore.swagger.io/v2/pets \\\n  -H \"Content-Type: application/json\" \\\n  -d '{name: Whiskers}'",
+          "request_body_raw": "{name: Whiskers}",
+          "response_body": {
+            "code": 400,
+            "message": "Bad request: request body is not valid JSON"
+          }
+        },
+        {
+          "title": "Internal server error",
+          "status_code": 500,
+          "description": "An unexpected server-side failure prevents the pet from being created.",
+          "curl": "curl -X POST https://petstore.swagger.io/v2/pets \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"name\": \"Shadow\"}'",
+          "request_body": {
+            "name": "Shadow"
+          },
+          "response_body": {
+            "code": 500,
+            "message": "Internal server error: unable to persist pet record"
+          }
+        }
+      ]
+    }
+  }
+}

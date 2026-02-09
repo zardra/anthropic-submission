@@ -70,7 +70,7 @@ class DocumentationOrchestrator:
             
             # Simulate agent execution with subprocess calling claude command
             # In actual usage: Use Task tool to spawn subagent
-            cmd = f"# claude task --agent .claude/agents/{agent_name}.md"
+            cmd = f"# claude task --agent Agents/{agent_name}.md"
             
             if input_data:
                 cmd += f" --input '{input_data}'"
